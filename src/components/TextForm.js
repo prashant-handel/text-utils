@@ -2,33 +2,39 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
   const [text, setText] = useState("");
-  const handleUpperCase = () => {
-    setText(text.toUpperCase());
-    text.length !== 0 && props.showAlert("Converted to UpperCase", "success");
-  };
+
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
+
+  const handleUpperCase = () => {
+    setText(text.toUpperCase());
+    props.showAlert("Converted to UpperCase", "success");
+  };
+
   const handleLowerCase = () => {
     setText(text.toLowerCase());
-    text.length !== 0 && props.showAlert("Converted to LowerCase", "success");
+    props.showAlert("Converted to LowerCase", "success");
   };
+
   const clearText = () => {
     setText("");
-    text.length !== 0 && props.showAlert("Text Cleared", "success");
+    props.showAlert("Text Cleared", "success");
   };
+
   const copyText = () => {
     navigator.clipboard.writeText(text)
-    text.length !== 0 && props.showAlert("Copied to Clipboard", "success");
+    props.showAlert("Copied to Clipboard", "success");
   };
+  
   const removExtraSpace = () => {
     setText(text.replaceAll(/\s+/g, " "));
-    text.length !== 0 && props.showAlert("Extra spaces removed", "success");
+    props.showAlert("Extra spaces removed", "success");
     };
   
   return (
     <>
-      <div>
+      <div style={{marginLeft: '20px', marginRight: '20px'}}>
         <div className="mb-3" style={{color: props.mode === 'light'?'black':'white'}}>
           <h1>{props.heading}</h1>
           <textarea
@@ -37,31 +43,31 @@ export default function TextForm(props) {
             rows="5"
             value={text}
             onChange={handleOnChange}
-            style={{backgroundColor: props.mode==='light'?'white':'#606060', color: props.mode === 'light'?'black':'white'}}
+            style={{backgroundColor: props.mode==='light'?'white':'#606060', color: props.mode === 'light'?'black':'white',border: props.mode==='light'?'1px solid black':'1px solid white'}}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpperCase}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleUpperCase} disabled={text.length===0}>
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLowerCase}>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleLowerCase} disabled={text.length===0}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={clearText}>
+        <button className="btn btn-primary mx-1 my-1" onClick={clearText} disabled={text.length===0}>
           Clear Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={copyText}>
+        <button className="btn btn-primary mx-1 my-1" onClick={copyText} disabled={text.length===0}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={removExtraSpace}>
+        <button className="btn btn-primary mx-1 my-1" onClick={removExtraSpace} disabled={text.length===0}>
           Remove Extra Space
         </button>
       </div>
-      <div className="container my-1" style={{color: props.mode === 'light'?'black':'white'}}>
+      <div className="mx-5 my-1" style={{color: props.mode === 'light'?'black':'white'}}>
         <h2>Number of Words</h2>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters
         </p>
-        <p>{text.split(" ").length / 200} minutes read</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length / 200} minutes read</p>
         <h3>Preview</h3>
         <p>{text.length>0?text:"Enter text to preview here!"}</p>
       </div>

@@ -15,7 +15,7 @@ import {
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState('null');
-
+  
   const toggleMode = ()=>{
     if(mode === 'light'){
       setMode('dark');
@@ -46,8 +46,9 @@ function App() {
       <div>
       <Alert alert={alert} type={type}/>
       </div>
+      <h1 style={{marginLeft: '20px', marginRight: '20px'}}>Try Text Utiles- Word Counter, Character Counter, Remove Extra Spaces</h1>
       <Routes>
-          <Route path="/" element={<TextForm mode={mode}/>}/>
+          <Route path="/" element={<TextForm showAlert={showAlert} mode={mode}/>}/>
           <Route path="/about" element={<About mode={mode}/>}/>
         </Routes>
         </Router>
