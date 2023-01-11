@@ -47,8 +47,8 @@ function App() {
       <Alert alert={alert} type={type}/>
       </div>
       <Routes>
-          <Route path="/home" element={<TextForm/>}/>
-          <Route path="/about" element={<About/>}/>
+          <Route path="/" element={<TextForm mode={mode}/>}/>
+          <Route path="/about" element={<About mode={mode}/>}/>
         </Routes>
         </Router>
     </>

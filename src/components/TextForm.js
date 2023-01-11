@@ -37,7 +37,7 @@ export default function TextForm(props) {
             rows="5"
             value={text}
             onChange={handleOnChange}
-            style={{backgroundColor: props.mode === 'light'?'white':'#606060', color: props.mode === 'light'?'black':'white'}}
+            style={{backgroundColor: props.mode==='light'?'white':'#606060', color: props.mode === 'light'?'black':'white'}}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpperCase}>
