@@ -34,6 +34,7 @@ export default function TextForm(props) {
   
   return (
     <>
+    <h1 style={{marginLeft: '20px', marginRight: '20px'}}>Try Text Utiles- Word Counter, Character Counter, Remove Extra Spaces</h1>
       <div style={{marginLeft: '20px', marginRight: '20px'}}>
         <div className="mb-3" style={{color: props.mode === 'light'?'black':'white'}}>
           <h1>{props.heading}</h1>
